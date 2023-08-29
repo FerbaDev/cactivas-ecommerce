@@ -75,7 +75,7 @@ const Checkout = () => {
     });
     try {
       let response = await axios.post(
-        "http://localhost:8080/create_preference",
+        "https://backend-cactivas.vercel.app/create_preference",
         {
           items: newArray,
           shipment_cost: shipmentCost,
