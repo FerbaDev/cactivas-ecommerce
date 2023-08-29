@@ -4,6 +4,7 @@ import { db } from "../../../firebaseConfig";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import ProductsList from "./ProductsList";
 import { Box, Button, Modal, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 const style = {
   position: "absolute",
   top: "50%",
@@ -49,6 +50,12 @@ const Dashboard = () => {
 
   return (
     <div>
+      <header style={{ display: "flex", justifyContent: "space-around" }}>
+        <h1>Dashboard de administrador</h1>
+        <Link to={"/ordenes"}>
+          <Button variant="contained">Ver órdenes</Button>
+        </Link>
+      </header>
       <Button variant="contained" onClick={() => setOpen(true)}>
         Costo de envio
       </Button>

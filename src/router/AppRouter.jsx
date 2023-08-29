@@ -7,6 +7,7 @@ import ForgotPassword from "../components/pages/forgotPassword/ForgotPassword";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
 import ProtectedUsers from "./ProtectedUsers";
+import { Ordenes } from "../components/pages/ordenes/Ordenes";
 
 const AppRouter = () => {
   return (
@@ -24,6 +25,7 @@ const AppRouter = () => {
       <Route element={<ProtectedAdmin />}>
         <Route element={<Navbar />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/ordenes" element={<Ordenes />} />
         </Route>
       </Route>
 
