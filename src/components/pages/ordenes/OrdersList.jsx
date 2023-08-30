@@ -43,7 +43,9 @@ export const OrdersList = ({ orders, setIsChange }) => {
                   {order.phone}
                 </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  {order.items}
+                  {order.items.map((item) => (
+                    <h4 key={item.id}>{item.title}</h4>
+                  ))}
                 </TableCell>
                 <TableCell component="th" scope="row" align="left">
                   {order.total}
