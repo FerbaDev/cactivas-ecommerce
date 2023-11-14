@@ -98,21 +98,22 @@ function Navbar(props) {
         position="fixed"
         sx={{
           width: "100%",
+          backgroundColor: "#353535",
         }}
       >
         <Toolbar
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
         >
-          <Link to="/" style={{ color: "whitesmoke" }}>
-            Bazar-deco
+          <Link to="/" style={{ color: "#ffffff", fontFamily: "monospace" }}>
+            Cactivas
           </Link>
           <IconButton
-            color="secondary.primary"
+            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
           >
-            <MenuIcon color="secondary.primary" />
+            <MenuIcon color="inherit" />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -131,7 +132,7 @@ function Navbar(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor: "#1976d2",
+              backgroundColor: "#353535",
             },
           }}
         >
@@ -146,6 +147,7 @@ function Navbar(props) {
           width: "100%",
           minHeight: "100vh",
           px: 2,
+          backgroundColor: "#d9d9d9",
         }}
       >
         <Toolbar />

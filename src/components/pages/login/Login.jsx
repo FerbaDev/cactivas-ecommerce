@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-
+import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useContext, useState } from "react";
@@ -75,9 +75,21 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        // backgroundColor: theme.palette.secondary.main,
       }}
     >
+      <div
+        style={{
+          padding: "20px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1 className="titular">Bienvenidos a Cactivas!</h1>
+        <p>Antes de pasar a la tienda iniciá sesión.</p>
+        <p>Si todavia no te registrate hacelo, o ingresá con Google.</p>
+      </div>
       <form onSubmit={handleSubmit}>
         <Grid
           container
