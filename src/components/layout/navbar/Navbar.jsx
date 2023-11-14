@@ -147,7 +147,7 @@ function Navbar(props) {
           width: "100%",
           minHeight: "100vh",
           px: 2,
-          backgroundColor: "#d9d9d9",
+          backgroundColor: "#ffffff",
         }}
       >
         <Toolbar />
