@@ -8,10 +8,15 @@ import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
 import ProtectedUsers from "./ProtectedUsers";
 import { Ordenes } from "../components/pages/ordenes/Ordenes";
+import Home from "../components/pages/home/Home";
 
 const AppRouter = () => {
   return (
     <Routes>
+      <Route element={<Navbar />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+
       {/* PARA LOS USUARIOS LOGEADOS */}
       <Route element={<ProtectedUsers />}>
         <Route element={<Navbar />}>

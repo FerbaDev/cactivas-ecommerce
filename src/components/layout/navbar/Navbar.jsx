@@ -105,7 +105,11 @@ function Navbar(props) {
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
         >
           <Link to="/" style={{ color: "#ffffff", fontFamily: "monospace" }}>
-            Cactivas
+            <img
+              src=".\CACTIVAS-TEXTO-BCO.png"
+              alt=""
+              style={{ height: "25px" }}
+            />
           </Link>
           <IconButton
             color="inherit"
