@@ -42,4 +42,9 @@ export const routes = [
     path: "/ordenes",
     Element: Ordenes,
   },
+  {
+    id: "categoria",
+    path: "/category/:categoryName",
+    Element: ItemListContainer,
+  },
 ];
