@@ -1,9 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import { getDoc, collection, doc } from "firebase/firestore";
-import { Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { CartContext } from "../../../context/CartContext";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const ItemDetail = () => {
   const { id } = useParams();
@@ -49,30 +58,89 @@ const ItemDetail = () => {
   };
 
   return (
-    <div>
-      <h1>detalle</h1>
+    <Box sx={{ padding: "20px" }}>
+      <h1>Detalle</h1>
 
       {product && (
-        <div>
-          <h2>{product.title}</h2>
-          <img src={product.image} style={{ width: "200px" }} alt="" />
-        </div>
+        <Grid item xs={12} sm={6} md={4}>
+          <Card
+            sx={{ height: "100%", display: "flex", flexDirection: "column", width: {xs: "100%", sm: "100%", md: "70%", lg: "30%" } }}
+          >
+            <img src={product.image} style={{ height: "200px", objectFit: "contain", padding: "4px" }} alt="" />
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography gutterBottom variant="h5" component="h2">
+                    {product.title}
+              </Typography>
+              <Typography>{product.description}</Typography>
+              <Typography>Precio: ${product.unit_price}</Typography>
+              {quantity && (
+              <Typography
+                  sx={{
+                    marginTop: "10px",
+                    backgroundColor: "rgba(255, 44, 255, 0.2)",
+                    padding: "4px",
+                    borderRadius: "2px",
+                    textAlign: "center",
+                  }}
+                >
+                  Ya tienes {quantity} en el carrito
+              </Typography>
+              )}
+              {product?.stock === quantity && (
+                <h6>Ya tienes el máximo en el carrito</h6>
+              )}
+              {
+                quantity && (
+                  <div style={{ marginBlock: "10px" }}>
+                  <Link to={"/cart"}>
+                    <Button size="small" color="success">
+                      Ir al carrito
+                    </Button>
+                  </Link>
+                  <Link to={"/shop"}>
+                    <Button size="small" color="secondary">
+                      Seguir comprando
+                    </Button>
+                  </Link>
+                </div>
+                )
+              }
+          </CardContent>
+          <CardActions>
+          <Box
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingInline: "5px",
+                  }}
+                >
+          {product?.stock ? (
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box sx={{ display: "flex" }}>
+                <Button variant="contained" onClick={addOne}>
+                  +
+                </Button>
+                <h4>{counter}</h4>
+                <Button variant="contained" onClick={subOne}>
+                  -
+                </Button>
+              </Box>
+              <Button onClick={onAdd}>Agregar al carrito</Button>
+            </Box>) : (<Typography>Sin Stock </Typography>)}
+            <Link to={-1}>
+              <ArrowBackIcon />
+            </Link>
+          </Box>
+          </CardActions>
+        </Card>
+        </Grid>
       )}
-      {quantity && <h6>Ya tienes {quantity} en el carrito</h6>}
-      {product?.stock === quantity && (
-        <h6>Ya tienes el maximo en el carrito</h6>
-      )}
-      <div style={{ display: "flex" }}>
-        <Button variant="contained" onClick={addOne}>
-          +
-        </Button>
-        <h4>{counter}</h4>
-        <Button variant="contained" onClick={subOne}>
-          -
-        </Button>
-      </div>
-      <Button onClick={onAdd}>Agregar al carrito</Button>
-    </div>
+
+      
+      
+    </Box>
   );
 };
 
