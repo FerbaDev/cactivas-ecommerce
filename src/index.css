@@ -17,3 +17,9 @@
     box-sizing: border-box;
     font-family: var(--font-kanit);
 }
+.btn {
+  padding: 5px;
+  background-color: #212121;
+  color: antiquewhite;
+}
+

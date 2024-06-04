@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
 import { Hero } from "./Hero";
-import { BannerTienda } from "./BannerTienda";
+import { Novedades } from "./Novedades";
+import "./home.css"
 
 const Home = () => {
   return (
     <Box>
       <Hero />
-      <BannerTienda />
+      <Novedades />
     </Box>
   );
 };

@@ -147,11 +147,8 @@ function Navbar(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          py: 4,
           width: "100%",
           minHeight: "100vh",
-          px: 2,
-          backgroundColor: "#ffffff",
         }}
       >
         <Toolbar />
