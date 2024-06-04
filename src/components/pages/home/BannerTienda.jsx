@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const BannerTienda = () => {
   return (
@@ -14,6 +15,7 @@ export const BannerTienda = () => {
         alt=""
         style={{ width: "100%", height: "auto", padding: "20px" }}
       />
+      <Link to={"/shop"}>Ver tienda</Link>
     </Box>
   );
 };
