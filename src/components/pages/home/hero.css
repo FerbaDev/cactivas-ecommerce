@@ -57,3 +57,34 @@
     background-color: #45a049;
   }
   
+
+  /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+  
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .hero-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 50px;
+  min-height: 90vh;
+  }
+  
+  .hero-banner {
+    width: 50%;
+    height: 50%;
+  }
+  .hero-image {
+display: none;
+  }
+  
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

@@ -1,14 +1,49 @@
-import { Box, Grid, Typography, Card, CardMedia, CardContent, CardActions, Button } from '@mui/material';
+import { Box, Grid, Typography, Card, CardMedia, CardContent, CardActions, CircularProgress, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { db } from "../../../firebaseConfig";
+import { getDocs, collection } from "firebase/firestore";
+import { Link } from 'react-router-dom';
 
-const productos = [
-    // Ejemplo de productos destacados
-    { id: 1, nombre: 'Cactus Echinopsis', imagen: '/images/echinopsis.jpg', precio: '$200' },
-    { id: 2, nombre: 'Suculenta Aloe Vera', imagen: '/images/aloe-vera.jpg', precio: '$150' },
-    { id: 3, nombre: 'Cactus Opuntia', imagen: '/images/opuntia.jpg', precio: '$180' }
-  ];
+
 
 
 const ProductosDestacados = () => {
+
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    let productosCollection = collection(db, "products");
+    
+    getDocs(productosCollection)
+      .then((res) => {
+        let productosList = res.docs.map((product) => {
+          return { ...product.data(), id: product.id };
+        });
+        // Mezclar productos de manera aleatoria
+        const shuffledProductos = productosList.sort(() => 0.5 - Math.random());
+        // Selecciona solo los primeros 3 productos
+        const productosDestacados = shuffledProductos.slice(0, 3);
+        setProductos(productosDestacados);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  if (productos.length === 0) {
+    return (
+      <Box
+        sx={{
+          minHeight: "75vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+
   return (
     <Box sx={{ padding: '20px' }}>
         <Typography variant="h4" gutterBottom>
@@ -21,21 +56,23 @@ const ProductosDestacados = () => {
                     <CardMedia
                     component="img"
                     height="200"
-                    image={producto.imagen}
-                    alt={producto.nombre}
+                    image={producto.image}
+                    alt={producto.title}
                     />
                     <CardContent>
                         <Typography variant="h6">
-                        {producto.nombre}
+                        {producto.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        {producto.precio}
+                        ${producto.unit_price}
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" color="primary">
-                        Ver más
-                        </Button>
+                    <Link to={`/itemDetail/${producto.id}`}>
+            <Button variant="contained" sx={{ margin: "10px" }}>
+              Ver detalle
+            </Button>
+          </Link>
                     </CardActions>
                 </Card>
             </Grid>
