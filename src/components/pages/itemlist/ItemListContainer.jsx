@@ -7,37 +7,49 @@ import {
   Button,
   ButtonGroup,
   CircularProgress,
+  Typography
 } from "@mui/material";
 import { menuCategorias } from "../../../router/menuCategorias";
 import { ItemList } from "./ItemList";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { categoryName, brandName } = useParams();
 
   useEffect(() => {
-    let refCollection = collection(db, "products");
-    let consulta;
+    const fetchProducts = async () => {
+      try {
+        let refCollection = collection(db, "products");
+        let consulta;
 
-    if (categoryName) {
-      consulta = query(refCollection, where("category", "==", categoryName));
-    } else if (brandName) {
-      consulta = query(refCollection, where("marca", "==", brandName));
-    } else {
-      consulta = refCollection;
-    }
-    getDocs(consulta)
-      .then((res) => {
-        let newArray = res.docs.map((product) => {
-          return { ...product.data(), id: product.id };
-        });
+        if (categoryName) {
+          consulta = query(refCollection, where("category", "==", categoryName));
+        } else if (brandName) {
+          consulta = query(refCollection, where("marca", "==", brandName));
+        } else {
+          consulta = refCollection;
+        }
+
+        const res = await getDocs(consulta);
+        const newArray = res.docs.map((product) => ({
+          ...product.data(),
+          id: product.id,
+        }));
 
         setProducts(newArray);
-      })
-      .catch((err) => console.log(err));
+      } catch (err) {
+        setError("Error al cargar los productos. Inténtalo de nuevo más tarde.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, [categoryName, brandName]);
 
-  if (products.length === 0) {
+  if (loading) {
     return (
       <Box
         sx={{
@@ -52,11 +64,28 @@ const ItemListContainer = () => {
     );
   }
 
+  if (error) {
+    return (
+      <Box
+        sx={{
+          minHeight: "75vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h6" color="error">
+          {error}
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Box sx={{ paddingBlock: "20px" }}>
-      <h1 className="bebas" style={{ paddingLeft: "20px", fontSize: "3em" }}>
+      <Typography variant="h2" sx={{ paddingLeft: "20px", fontSize: "3em" }} className="bebas">
         Tienda
-      </h1>
+      </Typography>
       <Box>
         <ButtonGroup
           variant="text"
@@ -71,16 +100,17 @@ const ItemListContainer = () => {
         >
           {menuCategorias.map(({ id, path, title }) => (
             <Button key={id}>
-              <Link to={path}>{title}</Link>
+              <Link to={path} style={{ textDecoration: "none", color: "inherit" }}>
+                {title}
+              </Link>
             </Button>
           ))}
-          
         </ButtonGroup>
       </Box>
-      <Box sx={{ margin: "20px" }}>
-      </Box>
+      <Box sx={{ margin: "20px" }}></Box>
       <ItemList products={products} />
     </Box>
   );
 };
+
 export default ItemListContainer;
