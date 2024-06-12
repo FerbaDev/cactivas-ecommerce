@@ -22,13 +22,13 @@ export const ItemCard = ({ product }) => {
         alt={product.title}
       />
       <Box sx={{ padding: "10px", backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
-        <Typography variant="h6" className="montserrat">
+        <Typography variant="text" className="kanit">
           {product.title}
         </Typography>
-        <Typography variant="body1" className="montserrat">
+        <Typography variant="body1" className="kanit">
           Precio: ${product.unit_price}
         </Typography>
-        <Typography variant="body2" className="montserrat">
+        <Typography variant="body2" className="kanit">
           Stock: {product.stock}
         </Typography>
         <Link to={`/itemDetail/${product.id}`} style={{ textDecoration: "none" }}>

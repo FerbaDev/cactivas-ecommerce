@@ -27,4 +27,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
+.kanit {
+  font-family: var(--font-kanit)!important;
+}

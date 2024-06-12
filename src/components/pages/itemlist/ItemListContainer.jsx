@@ -82,8 +82,8 @@ const ItemListContainer = () => {
   }
 
   return (
-    <Box sx={{ paddingBlock: "20px" }}>
-      <Typography variant="h2" sx={{ paddingLeft: "20px", fontSize: "3em" }} className="bebas">
+    <Box sx={{ paddingBlock: "20px" }} className="kanit">
+      <Typography variant="text" sx={{ paddingLeft: "20px", fontSize: "3em" }}>
         Tienda
       </Typography>
       <Box>

@@ -99,7 +99,7 @@ const ItemDetail = () => {
 
   return (
     <Box sx={{ padding: "20px" }}>
-      <Typography variant="h2" className="bebas" sx={{ paddingLeft: "20px", fontSize: "3em" }}>
+      <Typography variant="h2" sx={{ paddingLeft: "20px", fontSize: "3em" }}>
         Detalle
       </Typography>
       {product && (
