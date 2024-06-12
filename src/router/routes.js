@@ -12,11 +12,11 @@ export const routes = [
   //   path: "/",
   //   Element: Home,
   // },
-  {
-    id: "shop",
-    path: "/shop",
-    Element: ItemListContainer,
-  },
+  // {
+  //   id: "shop",
+  //   path: "/shop",
+  //   Element: ItemListContainer,
+  // },
   {
     id: "detalle",
     path: "/itemDetail/:id",

@@ -9,12 +9,15 @@ import ProtectedAdmin from "./ProtectedAdmin";
 import ProtectedUsers from "./ProtectedUsers";
 import { Ordenes } from "../components/pages/ordenes/Ordenes";
 import Home from "../components/pages/home/Home";
+import ItemListContainer from "../components/pages/itemlist/ItemListContainer";
 
 const AppRouter = () => {
   return (
     <Routes>
+      {/* Rutas públicas */}
       <Route element={<Navbar />}>
         <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<ItemListContainer />} />
       </Route>
 
       {/* PARA LOS USUARIOS LOGEADOS */}
@@ -34,13 +37,9 @@ const AppRouter = () => {
         </Route>
       </Route>
 
-      {/* Login */}
+      {/* Rutas públicas sin navbar*/}
       <Route path="/login" element={<Login />} />
-
-      {/* register  */}
       <Route path="/register" element={<Register />} />
-
-      {/* forgot password  */}
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route path="*" element={<h1>Not found</h1>} />

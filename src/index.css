@@ -18,8 +18,13 @@
     font-family: var(--font-kanit);
 }
 .btn {
-  padding: 5px;
-  background-color: #212121;
-  color: antiquewhite;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
