@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext, useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -143,18 +143,7 @@ function Navbar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          width: "100%",
-          minHeight: "100vh",
-        }}
-      >
-        <Toolbar />
-
-        <Outlet />
-      </Box>
+      
     </Box>
   );
 }
